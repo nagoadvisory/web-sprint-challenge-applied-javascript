@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -34,7 +36,7 @@ const Card = (article) => {
 
     //apply content....here we need to add article . for each 
     headlineDiv.textContent = article.headline;
-    imgcontainerDiv.setAttribute("src", article.authorPhoto); // how to set content for image / hyperlink
+    authorPhotoBuild.setAttribute("src", article.authorPhoto); // how to set content for image / hyperlink
     authorNameSpan.textContent=article.authorName;
 
     // apply hierarchy
@@ -43,8 +45,12 @@ const Card = (article) => {
     authorDiv.appendChild(imgcontainerDiv);
     authorDiv.appendChild(authorNameSpan);
 
-    return cardDiv;
+    //listener event
+    cardDiv.addEventListener('click', e => {
+      console.log(article.headline);
+    })
 
+    return cardDiv;
 
 }
 
@@ -57,6 +63,27 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+
+  let placeholder = document.querySelector(selector);
+
+  let cardData = axios.get('http://localhost:5000/api/articles')
+    .then(res =>{
+      let datapull = res.data.articles;
+      console.log(datapull);
+      //this leads to the correct variables we are seeking w/headline, authorname, photo...
+
+      //now that we have the data, which is an array of objects... we need to focus on each individual object under bootstrap, jss, etc
+      datapull.forEach (item =>{
+        item.forEach (itemtwo =>{
+          placeholder.appendChild(Card(itemtwo));
+        })
+      })
+
+    })
+    .catch (err => {
+      console.error(err);
+    })
+
 }
 
 export { Card, cardAppender }
