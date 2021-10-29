@@ -17,6 +17,35 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+
+    // build variables
+    let cardDiv = document.createElement('div');
+    let headlineDiv = document.createElement('div');
+    let authorDiv = document.createElement('div');
+    let imgcontainerDiv = document.createElement('div');
+    let authorPhotoBuild = document.createElement('img');
+    let authorNameSpan = document.createElement('span');
+
+    // apply classes
+    cardDiv.classList.add('card');
+    headlineDiv.classList.add('headline');
+    authorDiv.classList.add('author');
+    imgcontainerDiv.classList.add('img-container');
+
+    //apply content....here we need to add article . for each 
+    headlineDiv.textContent = article.headline;
+    imgcontainerDiv.setAttribute("src", article.authorPhoto); // how to set content for image / hyperlink
+    authorNameSpan.textContent=article.authorName;
+
+    // apply hierarchy
+    cardDiv.appendChild(headlineDiv);
+    cardDiv.appendChild(authorDiv);
+    authorDiv.appendChild(imgcontainerDiv);
+    authorDiv.appendChild(authorNameSpan);
+
+    return cardDiv;
+
+
 }
 
 const cardAppender = (selector) => {
