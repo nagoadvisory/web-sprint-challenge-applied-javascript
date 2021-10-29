@@ -44,6 +44,15 @@ const headerAppender = (selector) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
+
+//   <div class="header-container">
+//   <!-- index.js injects the header here -->
+// </div>
+  let headerPlaceholder = document.querySelector(selector);
+  let example = Header("Lets go Brandon","October 29, 2021", "11");
+
+  headerPlaceholder.appendChild(example);
+
 }
 
 export { Header, headerAppender }
