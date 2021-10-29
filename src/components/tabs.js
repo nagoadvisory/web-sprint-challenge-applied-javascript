@@ -13,6 +13,23 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
+
+  // create variables
+  let topicsBuild = document.createElement('div');
+
+  // assign class
+  topicsBuild.classList.add('topics');
+
+  //we need a function that builds a div for each input, with content, and positioning
+  topics.forEach( topic => {
+    let topicsCreator = document.createElement('div');
+    topicsCreator.textContent = topic;
+    topicsCreator.classList.add('tab');
+    topicsBuild.appendChild(topicsCreator);
+  });
+
+  return topicsBuild;
+
 }
 
 const tabsAppender = (selector) => {
